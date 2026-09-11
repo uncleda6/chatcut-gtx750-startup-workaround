@@ -1,0 +1,9 @@
+{
+  "name": "chatcut-gtx750-startup-workaround",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Experimental, version-pinned ChatCut 0.3.16 GTX 750 startup workaround; video decoding remains unresolved.",
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "scripts": { "test": "node --test test/*.test.cjs" }
+}

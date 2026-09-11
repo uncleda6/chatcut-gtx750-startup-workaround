@@ -1,0 +1,9 @@
+{
+  "scope": "Selected, sanitized observations from one Windows machine; not raw telemetry",
+  "environment": {"desktopVersion":"0.3.16","fluxVersion":"0.7.4","os":"Windows 11 Pro","osRelease":"10.0.26200","architecture":"x64","gpu":"NVIDIA GeForce GTX 750","gpuDriver":"32.0.15.8266","uiGraphicsBackend":"ANGLE D3D11"},
+  "before": {"installationHealth":"healthy","graphicsCheck":"check-failed","errorCode":"graphite-blocklisted","errorSource":"gpu-blocklist","matchedEntries":[38,40]},
+  "afterStartupPatch": {"installationHealth":"healthy","graphicsCheck":"supported","observedPage":"Chinese Welcome/login page"},
+  "isolatedRender": {"resolution":[1920,1080],"frameRate":30,"exportedFrames":60,"exportApiOk":true,"videoVisualCheck":"failed: black layer","warning":{"source":"video-decoder","code":"decode_failed","decoderStatus":1,"d3d11Status":6,"vdaError":0}},
+  "notValidated":["one-hour recordings","user source footage","audio sync","other GPUs","driver changes","independent validation of the generated H.264 source"],
+  "excluded":["usernames","account identifiers","private paths","machine identifiers","process IDs","precise timestamps","authentication data","full logs","vendor binaries"]
+}

@@ -1,0 +1,12 @@
+node_modules/
+output/
+*.exe
+*.asar
+*.dll
+*.node
+*.pdb
+*.log
+*.mp4
+*.zip
+*.backup*/
+patch-state.json
