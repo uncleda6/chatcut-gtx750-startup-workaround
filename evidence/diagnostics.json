@@ -4,6 +4,7 @@
   "before": {"installationHealth":"healthy","graphicsCheck":"check-failed","errorCode":"graphite-blocklisted","errorSource":"gpu-blocklist","matchedEntries":[38,40]},
   "afterStartupPatch": {"installationHealth":"healthy","graphicsCheck":"supported","observedPage":"Chinese Welcome/login page"},
   "isolatedRender": {"resolution":[1920,1080],"frameRate":30,"exportedFrames":60,"exportApiOk":true,"videoVisualCheck":"failed: black layer","warning":{"source":"video-decoder","code":"decode_failed","decoderStatus":1,"d3d11Status":6,"vdaError":0}},
-  "notValidated":["one-hour recordings","user source footage","audio sync","other GPUs","driver changes","independent validation of the generated H.264 source"],
+  "desktopRetest": {"date":"2026-09-11","sourceResolution":[3840,2160],"sourceRangeSeconds":[30,35],"timelineFps":30,"previewFrames":[0,90],"previewVisualCheck":"passed","exportResolution":[1920,1080],"exportVideoCodec":"h264","exportedVideoFrames":150,"exportVideoDurationSeconds":4.999933,"exportAudioCodec":"aac","audioSignalPresent":true,"exportFramesVisuallyChecked":[0,90],"exportVisualCheck":"passed","blackdetect":{"minimumDurationSeconds":0.1,"pixelThreshold":0.10,"pictureThreshold":0.98,"qualifyingBlackIntervals":0},"standaloneSyntheticRetest":"failed: black video layer and D3D11Status::6","syntheticSourceSoftwareDecode":"expected colored frame observed"},
+  "notValidated":["full one-hour recordings","audio sync","other GPUs","driver changes","cause of Desktop versus standalone diagnostic difference"],
   "excluded":["usernames","account identifiers","private paths","machine identifiers","process IDs","precise timestamps","authentication data","full logs","vendor binaries"]
 }

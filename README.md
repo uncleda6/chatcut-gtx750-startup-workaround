@@ -1,12 +1,14 @@
-# ChatCut 0.3.16 + GTX 750: startup workaround and unresolved video-decoder bug
+# ChatCut 0.3.16 + GTX 750: startup workaround and Desktop retest
 
 [中文说明](README.zh-CN.md)
 
-**Experimental community report. Startup is fixed on one tested machine; usable video editing is NOT established. This is not a complete repair or a CPU-only mode.**
+**Experimental community report. Startup works on one tested machine, and a 5-second real-footage Desktop preview/export test passed. The isolated synthetic decoder failure still reproduces. This is not a complete repair or a CPU-only mode.**
 
 ChatCut Desktop 0.3.16 stopped at “ChatCut 无法验证图形支持” on Windows 11 with an NVIDIA GeForce GTX 750. Its native graphics probe reported `graphite-blocklisted`, matching Chromium GPU blocklist entries **38 and 40**. Adding `--ignore-gpu-blocklist` to the native rendering host's launch arguments allowed the unmodified graphics probe to return `supported:true` and Desktop to reach its login screen.
 
-However, the subsequent generated H.264 test clip produced a black video layer and `video-decoder / decode_failed / D3D11Status::6`. A successful export API response did **not** prove correct pictures. This repository preserves that distinction so it can be investigated further.
+Separately, a hand-authored standalone native-host diagnostic produced a black video layer and `video-decoder / decode_failed / D3D11Status::6`. Its successful API responses did **not** prove correct pictures. This is an unresolved diagnostic result, not evidence that Desktop's normal export workflow fails.
+
+**Retest, 2026-09-11:** a 5-second excerpt from a locally imported 4K recording displayed correctly in Desktop and exported as 1080p H.264 with 150 video frames and an AAC audio track. Exported frames were visually checked, and an FFmpeg black-frame scan found no qualifying black intervals. In the same session, the standalone synthetic test still produced a black video layer. These are different test paths; the result does not establish why they differ or validate the full recording.
 
 ## Scope and evidence
 
@@ -18,8 +20,9 @@ However, the subsequent generated H.264 test clip produced a black video layer a
 | Patched Desktop startup | Normal Chinese Welcome/login page |
 | Solid-color frame rendering and Chinese text | Observed in diagnostic PNGs |
 | 2-second, 60-frame, 1920×1080 H.264 export | API returned success |
-| Video-layer correctness | **Failed: black layer with hardware decoder error** |
-| One-hour training video, real user footage, audio sync, other GPUs | **Not tested** |
+| Isolated synthetic video-layer correctness | **Failed again: black layer with hardware decoder error** |
+| Real 4K footage, 5-second Desktop timeline sample | **Preview and 1080p export passed visual checks** |
+| Full one-hour training video, audio sync, other GPUs | **Not tested** |
 
 See [the bug report](docs/BUG_REPORT.md), [sanitized diagnostic evidence](evidence/diagnostics.json), and [the native reproduction script](scripts/reproduce.cjs).
 
@@ -70,7 +73,7 @@ node scripts/chatcut-compat.cjs restore --install-dir "D:\ChatCut"
 
 Restore checks backup fingerprints and refuses unrelated updated files. It also restores the original startup limitation. The tool does not launch or kill ChatCut automatically, change drivers, or create persistent environment variables.
 
-## Reproduce the remaining decoder failure
+## Reproduce the standalone diagnostic anomaly
 
 This diagnostic calls the native host from your local installation without signing in, importing user footage, or uploading anything. It generates synthetic footage in a new output directory. It does not modify the installation:
 
